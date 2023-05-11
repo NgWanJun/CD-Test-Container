@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+env:
+  AWS_REGION: ap-northeast-1
+  ECR_REPOSITORY: wanjun-ecr
+  ECS_CLUSTER: wanjun-ecs
+  
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,13 +24,7 @@ jobs:
       run: npm ci
     - name: Run Jest tests
       run: npm test
-
-env:
-  AWS_REGION: ap-northeast-1
-  ECR_REPOSITORY: wanjun-ecr
-  ECS_CLUSTER: wanjun-ecs
-  
-jobs:
+      
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -50,6 +49,4 @@ jobs:
         task_definition: wanjun-task
         service: wanjun-ecsservice
         container_name: wanjun-ecscontainer
-        image: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
-
-
+        image: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ github.sha }}      
