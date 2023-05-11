@@ -20,8 +20,6 @@ jobs:
     - name: Run Jest tests
       run: npm test
 
-name: Build and Deploy
-
 env:
   AWS_REGION: ap-northeast-1
   ECR_REPOSITORY: wanjun-ecr
