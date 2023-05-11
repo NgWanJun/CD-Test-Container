@@ -43,7 +43,7 @@ jobs:
         push: true
         tags: ${{ env.ECR_REPOSITORY }}:${{ github.sha }}
     - name: Deploy to Amazon ECS Fargate
-      uses: aws-actions/amazon-ecs-deploy-task@v1
+      uses: aws-actions/amazon-ecs-deploy-task@v2
       with:
         cluster: ${{ env.ECS_CLUSTER }}
         task_definition: wanjun-task
